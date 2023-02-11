@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script>
+      var app = angular.module("lunchChecker", []);
+      app.controller("lunchController", function($scope) {
+        $scope.checkLunch = function() {
+          if (!$scope.lunchItems) {
+            $scope.message = "Please enter data first";
+            return;
+          }
+          var items = $scope.lunchItems.split(",");
+          var count = 0;
+          for (var i = 0; i < items.length; i++) {
+            if (items[i].trim().length > 0) {
+              count++;
+            }
+          }
+          if (count <= 3) {
+            $scope.message = "Enjoy!";
+          } else {
+            $scope.message = "Too much!";
+          }
+        };
+      });
+    </script>
+  </head>
+  <body ng-app="lunchChecker">
+    <div ng-controller="lunchController">
+      <form>
+        <p>
+          <input type="text" ng-model="lunchItems" placeholder="List comma-separated items">
+        </p>
+        <p>
+          <button ng-click="checkLunch()">Check If Too Much</button>
+        </p>
+        <p>{{message}}</p>
+      </form>
+    </div>
+  </body>
+</html>
