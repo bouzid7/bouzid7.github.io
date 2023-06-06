@@ -1,37 +1,17 @@
 <!DOCTYPE html>
-<html  ng-app="myfirstApp">
-    <head>
-        <style>
-            .test{
-                margin-top:100px;
-            }
-          </style>
-          <script src="angular.min.js"></script>
-          <script src="app.js"></script>
-          <script src="app1.js"></script>
-          <title>My first app AngularJS</title>
-    </head>
-    <body>
-    <h1 style="margin-top:150px"><center >My first App AngularJS   </center>  </h1> 
-      
-      
-          <div ng-controller="DIController">
-            <input type="text" ng-Model="name" ng-blind="upper()">
-            your input is :{{name}}
-          </div>
-        <!--  
-        <div ng-controller="myfirstController">
-        
-        <input  type="text"  ng-model="name1">
-          your input is :{{name1}}
+<html ng-app="NarrowItDownApp">
 
-          <div>
-            <label>name is :</label>
-            <input type="text"   ng-model="name2" ng-keyup="displayNumeric()"> {{name2}}
-            <p>total numeric value of person's name is :{{totalValue}}</p>
-          </div>
-         </div>
-        -->
-     
-    </body>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body>
+  <div ng-controller="NarrowItDownController as narrowCtrl">
+    <input type="text" ng-model="narrowCtrl.searchTerm" placeholder="Search term">
+    <button ng-click="narrowCtrl.narrowDown()">Narrow It Down</button>
+    <found-items found="narrowCtrl.foundItems" on-remove="narrowCtrl.removeItem(index)"></found-items>
+  </div>
+</body>
+
 </html>
